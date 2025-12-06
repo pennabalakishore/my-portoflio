@@ -1,3 +1,4 @@
+import { Briefcase, Code, User } from "lucide-react";
 export const AboutSection = () => {
   return (
     <section id="about" className="py-24 px-4 relative">
@@ -39,6 +40,47 @@ export const AboutSection = () => {
                 {" "}
                 Download CV
               </a>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 gap-6">
+            <div className="gradient-border p-6 card-hover">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-full bg-primary/10">
+                  <Code className="h-6 w-6 text-primary" />
+                </div>
+                <div className="text-left">
+                  <h4 className="font-semibold text-lg">Backend & Microservices</h4>
+                  <p className="text-muted-foreground">
+                  Designing scalable backend systems using Node.js, Fastify, MongoDB, Cassandra, Redis, and RabbitMQ (RPC communication).
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="gradient-border p-6 card-hover">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-full bg-primary/10">
+                  <User className="h-6 w-6 text-primary" />
+                              </div>
+                              <div className="text-left">
+                  <h4 className="font-semibold text-lg">Smart Home & IoT Integration</h4>
+                  <p className="text-muted-foreground">
+                  Building voice-enabled smart home solutions and IoT automation using MQTT, EMQX, and Alexa Smart Home skills.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="gradient-border p-6 card-hover">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-full bg-primary/10">
+                  <Briefcase className="h-6 w-6 text-primary" />
+                              </div>
+                              <div className="text-left">
+                  <h4 className="font-semibold text-lg">Project Management</h4>
+                  <p className="text-muted-foreground">
+                    Leading projects from conception to completion with agile methodologies 
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
