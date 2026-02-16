@@ -3,26 +3,32 @@ import { StarBackground } from "../components/StarBackground";
 import { ThemeToggle } from "../components/ThemeToggle";
 import { HeroSection } from "../components/HeroSection";
 import { AboutSection } from "../components/AboutSelection";
-import {SkillsSection} from "../components/SkillsSection"
+import { SkillsSection } from "../components/SkillsSection";
+import { ProjectsSection } from "../components/ProjectsSection";
+import { ContactSection } from "../components/ContactSection";
 
 export const Home = () => {
-    return <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-        {/* {Theme Toggle} */}
-        <ThemeToggle/>
+  return (
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      {/* {Theme Toggle} */}
+      <ThemeToggle />
 
-        {/* {Background Effects} */}
-        <StarBackground/>
+      {/* {Background Effects} */}
+      <StarBackground />
 
-        {/* {Navbar} */}
-        <Navbar/>
+      {/* {Navbar} */}
+      <Navbar />
 
-        {/* {Main Content} */}
-        <main>
-            <HeroSection />
-            <AboutSection />
-            <SkillsSection/>
-        </main>
+      {/* {Main Content} */}
+      <main>
+        <HeroSection />
+        <AboutSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <ContactSection />
+      </main>
 
-        {/* {Footer} */}
+      {/* {Footer} */}
     </div>
-}
+  );
+};

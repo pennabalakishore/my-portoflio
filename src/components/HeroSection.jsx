@@ -19,15 +19,15 @@ export const HeroSection = () => {
               Kishore
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto opacity-0 animate-fade-in-delay-3">
             I’m a software engineer who builds modern web and IoT experiences. I
             work with Alexa voice skills, microservices, and backend systems to
             create smart and seamless products.
           </p>
 
           <div className="pt-3 opacity-0 animate-fade-in-delay-3">
-            <a herf="#projects" className="cosmic-button">
-              view My Work
+            <a href="#projects" className="cosmic-button">
+              View My Work
             </a>
           </div>
         </div>
