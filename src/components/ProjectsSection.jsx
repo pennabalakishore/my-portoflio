@@ -2,6 +2,15 @@ import { ExternalLink, Github } from "lucide-react";
 
 const projects = [
   {
+    title: "Personal Portfolio Website",
+    description:
+      "Built this portfolio to showcase my backend, frontend, and IoT work with a responsive React UI, category-based skills section, and direct contact workflow.",
+    technologies: ["React", "Vite", "Tailwind CSS", "JavaScript"],
+    liveUrl: "",
+    codeUrl: "",
+    status: "Current",
+  },
+  {
     title: "Smart Home Voice Control Platform",
     description:
       "Built an Alexa-enabled automation layer that connects home devices through MQTT topics and Fastify services for real-time control and status sync.",
@@ -32,22 +41,6 @@ const projects = [
     liveUrl: "",
     codeUrl: "",
     status: "Production",
-  },
-  {
-    title: "IoT Device Monitoring Dashboard",
-    description:
-      "Created a telemetry dashboard for connected devices with event logs, health insights, and operational controls backed by event-driven APIs.",
-    technologies: [
-      "React",
-      "Tailwind CSS",
-      "Fastify",
-      "Cassandra",
-      "EMQX",
-      "CI/CD",
-    ],
-    liveUrl: "",
-    codeUrl: "",
-    status: "In Progress",
   }
 ];
 
