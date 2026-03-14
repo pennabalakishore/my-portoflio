@@ -1,4 +1,5 @@
-import { ExternalLink, Github } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { ExternalLink, Github, X } from "lucide-react";
 
 const projects = [
   {
@@ -6,6 +7,7 @@ const projects = [
     description:
       "Built this portfolio to showcase my backend, frontend, and IoT work with a responsive React UI, category-based skills section, and direct contact workflow.",
     technologies: ["React", "Vite", "Tailwind CSS", "JavaScript"],
+    image: "/portfolio-homepage.png",
     liveUrl: "",
     codeUrl: "",
     status: "Current",
@@ -15,13 +17,15 @@ const projects = [
     description:
       "Built an Alexa-enabled automation layer that connects home devices through MQTT topics and Fastify services for real-time control and status sync.",
     technologies: [
+      "AWS Lambda",
+      "React",
+      "Alexa Developer Console",
       "Node.js",
-      "Fastify",
-      "Alexa Skill Kit",
+      "PostgreSQL",
       "MQTT",
-      "Redis",
-      "RabbitMQ",
+      "DynamoDB",
     ],
+    image: "/smart-home-dashboard.png",
     liveUrl: "",
     codeUrl: "",
     status: "Private",
@@ -45,6 +49,26 @@ const projects = [
 ];
 
 export const ProjectsSection = () => {
+  const [lightbox, setLightbox] = useState(null);
+  const [visible, setVisible] = useState(false);
+
+  const openLightbox = (project) => {
+    setLightbox(project);
+    requestAnimationFrame(() => setVisible(true));
+  };
+
+  const closeLightbox = useCallback(() => {
+    setVisible(false);
+    setTimeout(() => setLightbox(null), 500);
+  }, []);
+
+  useEffect(() => {
+    if (!lightbox) return;
+    const handleKey = (e) => e.key === "Escape" && closeLightbox();
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [lightbox, closeLightbox]);
+
   return (
     <section id="projects" className="py-24 px-4 relative">
       <div className="container mx-auto max-w-6xl">
@@ -61,8 +85,21 @@ export const ProjectsSection = () => {
           {projects.map((project) => (
             <article
               key={project.title}
-              className="gradient-border bg-card p-6 rounded-xl card-hover text-left flex flex-col"
+              className="gradient-border bg-card rounded-xl card-hover text-left flex flex-col overflow-hidden"
             >
+              {project.image && (
+                <div
+                  className="w-full h-48 overflow-hidden cursor-pointer group"
+                  onClick={() => openLightbox(project)}
+                >
+                  <img
+                    src={project.image}
+                    alt={`${project.title} screenshot`}
+                    className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+              )}
+              <div className="p-6 flex flex-col flex-1">
               <div className="flex items-center justify-between gap-3 mb-4">
                 <h3 className="text-xl font-semibold">{project.title}</h3>
                 <span className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary whitespace-nowrap">
@@ -112,10 +149,50 @@ export const ProjectsSection = () => {
                   <span className="text-sm text-muted-foreground">Code: Private</span>
                 )}
               </div>
+              </div>
             </article>
           ))}
         </div>
       </div>
+
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          onClick={closeLightbox}
+        >
+          <div
+            className="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-500 ease-in-out"
+            style={{ opacity: visible ? 1 : 0 }}
+          />
+
+          <div
+            className="relative w-[60vw] max-h-[80vh] transition-all duration-500 ease-in-out"
+            style={{
+              opacity: visible ? 1 : 0,
+              transform: visible ? "scale(1)" : "scale(0.4)",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={closeLightbox}
+              className="absolute -top-10 right-0 text-white/70 hover:text-white transition-colors"
+              aria-label="Close preview"
+            >
+              <X className="h-6 w-6" />
+            </button>
+
+            <img
+              src={lightbox.image}
+              alt={`${lightbox.title} screenshot`}
+              className="w-full h-auto rounded-xl shadow-2xl object-contain"
+            />
+
+            <p className="text-center text-white/80 text-sm mt-3 font-medium">
+              {lightbox.title}
+            </p>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
